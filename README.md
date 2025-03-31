@@ -216,15 +216,7 @@
       const top = parseInt(style.top);
       const left = parseInt(style.left);
 
-      if (offsetX > 30 && left < 380) player.style.left = `${left + 20}px`;
-      if (offsetX < -30 && left > 0) player.style.left = `${left - 20}px`;
-      if (offsetY > 30 && top < 380) player.style.top = `${top + 20}px`;
-      if (offsetY < -30 && top > 0) player.style.top = `${top - 20}px`;
+      const newLeft = left + (offsetX > 30 ? cellSize : offsetX < -30 ? -cellSize : 0);
+      const newTop = top + (offsetY > 30 ? cellSize : offsetY < -30 ? -cellSize : 0);
 
-      checkWin();
-    });
-
-    initializeLevel();
-  </script>
-</body>
-</html>
+      if (newLeft >= 0 && newTop >= 0 && newLeft < 400 && newTop
